@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="dark" style="background-color: #020617; color: #f8fafc; color-scheme: dark;">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='14' x='2' y='5' rx='2'/><line x1='2' x2='22' y1='10' y2='10'/></svg>" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinTrack | Personal Finance & Expense Tracker</title>
+    
+    <!-- Instant anti-FOUC theme detector to eliminate white flash on reload -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('fintrack_theme') || 'dark';
+          var doc = document.documentElement;
+          if (saved === 'dark') {
+            doc.classList.add('dark');
+            doc.classList.remove('light');
+            doc.style.backgroundColor = '#020617';
+            doc.style.color = '#f8fafc';
+            doc.style.colorScheme = 'dark';
+          } else {
+            doc.classList.add('light');
+            doc.classList.remove('dark');
+            doc.style.backgroundColor = '#f8fafc';
+            doc.style.color = '#0f172a';
+            doc.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      html, body {
+        background-color: #020617;
+        color: #f8fafc;
+        margin: 0;
+        padding: 0;
+      }
+      html.light, html.light body {
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body style="background-color: inherit; color: inherit;" class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen selection:bg-emerald-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

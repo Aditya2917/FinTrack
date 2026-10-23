@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+html {
+  background-color: #020617;
+  color: #f8fafc;
+  color-scheme: dark;
+}
+
+html.light {
+  background-color: #f8fafc;
+  color: #0f172a;
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Light / Dark Mode Card Tokens */
+.glass-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Gradients */
+.gradient-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.gradient-rose {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+}
+
+.gradient-violet {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+}
+
+.gradient-amber {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+/* Print Styles - Preserve Actual Dark Theme & High Typography Contrast */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  @page {
+    size: auto;
+    margin: 10mm 12mm;
+    background: #020617;
+  }
+
+  html, body {
+    background: #020617 !important;
+    background-color: #020617 !important;
+    color: #f8fafc !important;
+    -webkit-font-smoothing: antialiased;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide interactive non-printable elements */
+  nav,
+  header,
+  footer,
+  .no-print,
+  button:not(.print-include),
+  input,
+  select,
+  .Toastify,
+  [role="status"] {
+    display: none !important;
+  }
+
+  /* When Statement Modal is open, fill the print canvas cleanly */
+  .statement-modal-backdrop {
+    position: static !important;
+    inset: auto !important;
+    background: #020617 !important;
+    background-color: #020617 !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .statement-modal-content {
+    position: static !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: 1px solid #1e293b !important;
+    background: #020617 !important;
+    background-color: #020617 !important;
+    color: #f8fafc !important;
+    padding: 12px 16px !important;
+    margin: 0 !important;
+    border-radius: 16px !important;
+  }
+
+  .print-statement {
+    max-height: none !important;
+    overflow: visible !important;
+    background: #020617 !important;
+    background-color: #020617 !important;
+    color: #f8fafc !important;
+  }
+
+  /* High contrast styling for cards and tables in Print & B&W */
+  .glass-card {
+    background: #0b0f19 !important;
+    background-color: #0b0f19 !important;
+    border: 1px solid #1e293b !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  /* Ensure text never looks washed-out or dim in black & white print */
+  .text-slate-400,
+  .text-slate-500 {
+    color: #cbd5e1 !important;
+    font-weight: 600 !important;
+  }
+
+  .text-slate-300 {
+    color: #e2e8f0 !important;
+    font-weight: 600 !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  thead {
+    background: #0f172a !important;
+    background-color: #0f172a !important;
+    border-bottom: 2px solid #334155 !important;
+  }
+
+  th {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    border-bottom: 2px solid #334155 !important;
+    background: #0f172a !important;
+    background-color: #0f172a !important;
+  }
+
+  td {
+    border-color: #1e293b !important;
+    color: #f8fafc !important;
+    font-weight: 500 !important;
+  }
+
+  /* Balanced brand badge in black and white */
+  .print-brand-badge {
+    background: #064e3b !important;
+    border: 1px solid #059669 !important;
+    color: #a7f3d0 !important;
+    font-weight: 800 !important;
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.08); }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 8s ease-in-out infinite;
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
